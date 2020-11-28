@@ -58,7 +58,7 @@ app.get("/getKeywords", function(req, res) {
     let sql = "SELECT DISTINCT keyword FROM favorites ORDER BY keyword";
     let imageUrlArray = ["img/favorite.png"];
     
-    pool.query(sql, sqlParams, function(err, rows, fields) {
+    pool.query(sql, function(err, rows, fields) {
         if (err) throw err;
         console.log(rows);
         res.render("favorites", {"imageUrlArray": imageUrlArray, "rows": rows});
