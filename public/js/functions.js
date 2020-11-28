@@ -4,7 +4,7 @@ $(document).ready(function() {
        let urlParams = new URLSearchParams(queryString);
        let keyword = urlParams.get("keyword");
        
-       let imageUrl = $(this). prev().attr("src");
+       let imageUrl = $(this).prev().attr("src");
        
        if ($(this).attr("src") == "img/favorite.png") {
            $(this).attr("src", "img/favorite_on.png");
@@ -17,6 +17,6 @@ $(document).ready(function() {
 });
 
 async function updateFavorite(action, imageUrl, keyword) {
-    let url = `api/updateFavorites?action=${action}&imageUrl=${imageUrl}&keyword=${keyword}`;
+    let url = `/api/updateFavorites?action=${action}&imageUrl=${imageUrl}&keyword=${keyword}`;
     await fetch(url);
 }

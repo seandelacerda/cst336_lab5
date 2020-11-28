@@ -32,6 +32,28 @@ app.get("/search", async function(req, res) {
     res.render("results", { "imageUrl": data[0].urls.small, "imageUrlArray": imageUrlArray });
 });
 
+app.get("/api/updateFavorites", function(req, res) {
+    let sql, sqlParams;
+    switch(req.query.action) {
+        case "add":
+            sql = "INSERT INTO favorites (imageUrl, keyword) VALUES (?,?)";
+            sqlParams = [req.query.imageUrl, req.query.keyword];
+            break;
+        case "delete":
+            sql = "DELETE FROM favorites WHERE imageUrl = ?";
+            sqlParams = [req.query.imageUrl];
+            break;
+        default:
+            break;
+    }
+    
+    pool.query(sql, sqlParams, function(err, rows, fields) {
+        if (err) throw err;
+        console.log(rows);
+        res.send(rows.affectedRows.toString());
+    })
+});
+
 // starting server
 app.listen(process.env.PORT, process.env.IP, function() {
     console.log("express server is running");
