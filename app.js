@@ -56,11 +56,11 @@ app.get("/api/updateFavorites", function(req, res) {
 
 app.get("/getKeywords", function(req, res) {
     let sql = "SELECT DISTINCT keyword FROM favorites ORDER BY keyword";
-    let imageUrlArray = ["img/favorite.png"];
+    let imageUrl = "https://images.unsplash.com/photo-1566079463188-97d2f1352582?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80";
     pool.query(sql, function(err, rows, fields) {
         if (err) throw err;
         console.log(rows);
-        res.render("favorites", { "imageUrlArray": imageUrlArray, "rows": rows });
+        res.render("favorites", { "imageUrl": imageUrl, "rows": rows });
     });
 });
 
