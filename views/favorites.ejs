@@ -1,21 +1,21 @@
 <%- include('partials/header.ejs') %>
-
-   <a href="/"> Back to Search </a>
+    <div id="favContainer">
+        <a class="link btn btn-link" href="/"> Back to Search </a>
     
-   <h1>Favorite Pics</h1>
+    <h1>Favorite Pics</h1>
     
-   <% 
+    <% 
        //displaying five keywords per line
       rows.forEach(function(row, i){ %>
        
-        <a class="keywordLink" href="#"><%= row["keyword"] %></a>
+        <a class="keywordLink btn btn-link" href="#"><%= row["keyword"] %></a>
     
         <%- ((i+1) % 6 == 0)?'<br><br>':'' %>
     
-    <% });%>
+     <% });%>
     
-    <div id="favorites"></div>
+     <div id="favorites"></div>
     
-    <input type="hidden" id="keywordSelected">
-
+     <input type="hidden" id="keywordSelected">
+    </div>
 <%- include('partials/footer.ejs') %>
